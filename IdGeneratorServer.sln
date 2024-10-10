@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorServer.Web", "IdGeneratorServer.Web\IdGeneratorServer.Web.csproj", "{EF2C8624-7A4A-4AEF-B337-6B3B109A7D08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorServer.Application.Constant", "IdGeneratorServer.Application.Constant\IdGeneratorServer.Application.Constant.csproj", "{4CD75FD2-17F8-49D8-BB5A-EEB495A9D6FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorServer.Application", "IdGeneratorServer.Application\IdGeneratorServer.Application.csproj", "{B91E5648-41AC-4F76-91F5-D34DEF1F9E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorServer.Snowflake.YitterId", "IdGeneratorServer.Snowflake.YitterId\IdGeneratorServer.Snowflake.YitterId.csproj", "{D75EF9AF-4970-40A7-A2C5-33BA79DBB49A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1CFE9560-042B-4555-81E9-32679F7A618B}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		.dockerignore = .dockerignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdGeneratorServer.Snowflake", "IdGeneratorServer.Snowflake\IdGeneratorServer.Snowflake.csproj", "{D1083D67-EB94-41C0-85D2-E2D3E934F880}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF2C8624-7A4A-4AEF-B337-6B3B109A7D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2C8624-7A4A-4AEF-B337-6B3B109A7D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2C8624-7A4A-4AEF-B337-6B3B109A7D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2C8624-7A4A-4AEF-B337-6B3B109A7D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD75FD2-17F8-49D8-BB5A-EEB495A9D6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD75FD2-17F8-49D8-BB5A-EEB495A9D6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD75FD2-17F8-49D8-BB5A-EEB495A9D6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD75FD2-17F8-49D8-BB5A-EEB495A9D6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91E5648-41AC-4F76-91F5-D34DEF1F9E02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91E5648-41AC-4F76-91F5-D34DEF1F9E02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91E5648-41AC-4F76-91F5-D34DEF1F9E02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91E5648-41AC-4F76-91F5-D34DEF1F9E02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D75EF9AF-4970-40A7-A2C5-33BA79DBB49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D75EF9AF-4970-40A7-A2C5-33BA79DBB49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D75EF9AF-4970-40A7-A2C5-33BA79DBB49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D75EF9AF-4970-40A7-A2C5-33BA79DBB49A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1083D67-EB94-41C0-85D2-E2D3E934F880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1083D67-EB94-41C0-85D2-E2D3E934F880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1083D67-EB94-41C0-85D2-E2D3E934F880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1083D67-EB94-41C0-85D2-E2D3E934F880}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

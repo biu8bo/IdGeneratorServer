@@ -1,0 +1,6 @@
+@IdGeneratorServer_HostAddress = http://localhost:5189
+
+GET {{IdGeneratorServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

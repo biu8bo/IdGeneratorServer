@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: id-generator-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: id-generator-server
+  template:
+    metadata:
+      name: id-generator-server
+      labels:
+        app: id-generator-server
+    spec:
+      containers:
+        - name: id-generator-server
+          image: 192.168.31.236:8089/myharbor/idgenerator.server:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5189
+              protocol: TCP
+      restartPolicy: Always
+      

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>IdGeneratorServer.YitterId</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+      <PackageReference Include="Volo.Abp.Core" Version="8.3.0" />
+      <PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\IdGeneratorServer.Snowflake\IdGeneratorServer.Snowflake.csproj" />
+    </ItemGroup>
+
+</Project>
