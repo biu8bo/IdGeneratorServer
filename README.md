@@ -1,0 +1,1 @@
+Abp 分布式雪花Id生成服务，兼容服务扩容，workId采用Redis存储与刷新，避免实例之间workid重复
