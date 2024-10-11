@@ -1,0 +1,98 @@
+#定义configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: idgenerator-appsettings
+  namespace: dev  # 根据需要设置命名空间
+data:
+  appsettings.json: |
+    {
+      "App": {
+        "SelfUrl": "http://*:5189",
+        "CorsOrigins": "http://localhost:5189"
+      },
+      "SnowflakeIdOption": {
+        "WorkId": "",
+        "WorkIdLength": "6",
+        "Database": "0",
+        "ConnectionString": "idgenerator-redis:6379",
+        "InstanceName": "IdGenerator"
+      },
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "AllowedHosts": "*"
+    }
+---
+#用于共享workid的redis
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: dev
+  name: idgenerator-redis
+  labels:
+    app: idgenerator-redis
+spec:
+  containers:
+    - name: idgenerator-redis
+      image: redis:latest
+      ports:
+        - containerPort: 6379
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "500m"
+---
+#定义pod编排
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: id-generator-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: id-generator-server
+  template:
+    metadata:
+      name: id-generator-server
+      labels:
+        app: id-generator-server
+    spec:
+      containers:
+        - name: id-generator-server
+          image: 192.168.31.236:8089/myharbor/idgenerator.server:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /app #挂载文件夹位置
+              name: config # 定义的挂载名称
+          ports:
+            - containerPort: 5189
+              protocol: TCP
+      restartPolicy: Always
+      volumes:
+        - name: config         # 定义一个挂载名称
+          configMap:
+            name: idgenerator-appsettings  #configmap name
+---
+#定义服务负载
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dev
+  name: id-generator-server
+spec:
+  selector:
+    app: id-generator-server
+  ports:
+    - protocol: TCP
+      port: 5189
+      targetPort: 5189
+  type: ClusterIP
