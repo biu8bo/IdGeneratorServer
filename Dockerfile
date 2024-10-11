@@ -9,7 +9,8 @@ WORKDIR /src
 COPY ["IdGeneratorServer.Web/IdGeneratorServer.Web.csproj", "IdGeneratorServer.Web/"]
 COPY ["IdGeneratorServer.Application/IdGeneratorServer.Application.csproj", "IdGeneratorServer.Application/"]
 COPY ["IdGeneratorServer.Application.Constant/IdGeneratorServer.Application.Constant.csproj", "IdGeneratorServer.Application.Constant/"]
-COPY ["IdGeneratorServer.YitterId/IdGeneratorServer.YitterId.csproj", "IdGeneratorServer.YitterId/"]
+COPY ["IdGeneratorServer.Snowflake.YitterId/IdGeneratorServer.Snowflake.YitterId.csproj", "IdGeneratorServer.Snowflake.YitterId/"]
+COPY ["IdGeneratorServer.Snowflake/IdGeneratorServer.Snowflake.csproj", "IdGeneratorServer.Snowflake/"]
 RUN dotnet restore "IdGeneratorServer.Web/IdGeneratorServer.Web.csproj"
 COPY . .
 WORKDIR "/src/IdGeneratorServer.Web"
