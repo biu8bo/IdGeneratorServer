@@ -71,8 +71,9 @@ spec:
           image: 192.168.31.236:8089/myharbor/idgenerator.server:latest
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - mountPath: /app #挂载文件夹位置
+            - mountPath: /app/appsettings.json #挂载文件夹位置
               name: config # 定义的挂载名称
+              subPath: appsettings.json
           ports:
             - containerPort: 5189
               protocol: TCP
@@ -81,6 +82,9 @@ spec:
         - name: config         # 定义一个挂载名称
           configMap:
             name: idgenerator-appsettings  #configmap name
+            items:
+              - key: appsettings.json
+                path: appsettings.json
 ---
 #定义服务负载
 apiVersion: v1
@@ -95,4 +99,5 @@ spec:
     - protocol: TCP
       port: 5189
       targetPort: 5189
-  type: ClusterIP
+      nodePort: 30001
+  type: NodePort
