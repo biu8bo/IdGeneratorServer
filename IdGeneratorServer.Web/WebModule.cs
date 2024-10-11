@@ -1,5 +1,9 @@
 using IdGeneratorServer.Application;
+using IdGeneratorServer.Application.Constant;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Serilog;
@@ -10,6 +14,7 @@ using Volo.Abp.Swashbuckle;
 namespace IdGeneratorServer.Web;
 [DependsOn(   typeof(AbpAutofacModule),
     typeof(ApplicationModule),
+    typeof(ApplicationConstantModule),
     typeof(AbpAspNetCoreMvcModule) ,//自动api控制器
     typeof(AbpAspNetCoreSerilogModule),//日志系统
     typeof(AbpSwashbuckleModule))]
@@ -21,17 +26,25 @@ public class WebModule:AbpModule
     { 
         var configuration = context.Services.GetConfiguration();
 // Add services to the container.
-
+        //配置自动Api控制器
+        Configure<AbpAspNetCoreMvcOptions>(option =>
+            {
+                option.ConventionalControllers.Create(typeof(ApplicationModule).Assembly,
+                    options => options.RemoteServiceName = "IdGeneratorServer");
+            }
+           );
         context.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         context.Services.AddEndpointsApiExplorer();
-        context.Services.AddSwaggerGen();
  
-        //配置自动Api控制器
-        Configure<AbpAspNetCoreMvcOptions>(option =>
-            //开启自动API控制器
-            // //http://localhost:5233/api/app/abp-domain-exercise/on-completed   
-            option.ConventionalControllers.Create(typeof(ApplicationModule).Assembly));
+        context.Services.AddAbpSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "动态API", Version = "v1" });
+            options.DocInclusionPredicate((docName, description) => true);
+            options.CustomSchemaIds(type => type.FullName);
+        });
+ 
+
         //跨域
         context.Services.AddCors(options =>
         {
@@ -52,6 +65,8 @@ public class WebModule:AbpModule
             });
         });
 
+
+        
         return Task.CompletedTask;
     }
 
@@ -68,6 +83,7 @@ public class WebModule:AbpModule
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseAbpSwaggerUI();
         }
 
         app.UseHttpsRedirection();
@@ -76,7 +92,7 @@ public class WebModule:AbpModule
 
         //终节点
         app.UseConfiguredEndpoints();
- 
+        
          return Task.CompletedTask;
     }
 

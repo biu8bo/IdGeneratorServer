@@ -20,4 +20,8 @@
       <ProjectReference Include="..\IdGeneratorServer.Application\IdGeneratorServer.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>

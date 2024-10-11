@@ -6,11 +6,11 @@ namespace IdGeneratorServer.Application.Constant;
 /// <summary>
 /// Id生成服务
 /// </summary>
-public interface IdGeneratorService: IApplicationService
+public interface IdGeneratorAppService: IApplicationService
 {
     /// <summary>
     /// 生成Id
     /// </summary>
     /// <returns></returns>
-     long NextId();
+    Task<long> GetNextId();
 }

@@ -1,14 +1,12 @@
+using IdGeneratorServer.Application.Constant;
 using IdGeneratorServer.YitterId;
 using Volo.Abp;
+using Volo.Abp.Application;
 using Volo.Abp.Modularity;
 
 namespace IdGeneratorServer.Application;
 
-[DependsOn(typeof(YitterIdModule))]
-public class ApplicationModule:AbpModule
-{
-    public override void OnApplicationInitialization(ApplicationInitializationContext context)
-    {
-        base.OnApplicationInitialization(context);
-    }
-}
+[DependsOn(typeof(YitterIdModule),
+    typeof(AbpDddApplicationModule),
+    typeof(ApplicationConstantModule))]
+public class ApplicationModule:AbpModule{}

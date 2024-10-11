@@ -1,20 +1,22 @@
 ﻿using IdGeneratorServer.Application.Constant;
 using IdGeneratorServer.Snowflake;
+using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Yitter.IdGenerator;
 
 namespace IdGeneratorServer.Application;
 
-public class YitIdGeneratorService: ApplicationService,IdGeneratorService
+ 
+public class YitIdGeneratorAppService: ApplicationService,IdGeneratorAppService
 {
     private readonly ISnowflakeIdGenerator _snowflakeIdGenerator;
-    public YitIdGeneratorService(ISnowflakeIdGenerator snowflakeIdGenerator)
+    public YitIdGeneratorAppService(ISnowflakeIdGenerator snowflakeIdGenerator)
     {
         _snowflakeIdGenerator = snowflakeIdGenerator;
     }
-    public long NextId()
+    
+    public async Task<long> GetNextId()
     {
- 
-        return  _snowflakeIdGenerator.NextId();
+        return await  Task.FromResult(_snowflakeIdGenerator.NextId());
     }
 }
